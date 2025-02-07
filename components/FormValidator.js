@@ -9,6 +9,8 @@ class FormValidator {
   }
 
   _checkInputValidity(inputElement) {
+    const formElement = this._formEl;
+    const settings = this._settings;
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {
