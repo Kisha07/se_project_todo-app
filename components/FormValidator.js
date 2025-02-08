@@ -50,11 +50,18 @@ class FormValidator {
     });
   }
 
+  resetvalidation() {
+    this._formEl.reset();
+    this._toggleButtonState();
+  }
+
   enableValidation() {
     this._formEl.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this.resetvalidation();
     });
     this._setEventListeners();
+    this._toggleButtonState();
   }
 }
 
