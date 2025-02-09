@@ -5,6 +5,16 @@ class Todo {
   }
 
   _setEventListeners() {
+    const dateInput = this._todoElement.querySelector(".popup_input_type_date");
+
+    if (dateInput) {
+      dateInput.addEventListener("change", (event) => {
+        this._data.date = event.target.value;
+        this._generateDueDate();
+      });
+    } else {
+      console.error("Date input not found");
+    }
     this._todoDeleteBtn.addEventListener("click", () => {
       if (this._todoCheckboxEl.checked) {
         this._completed = !this._completed;
@@ -28,12 +38,16 @@ class Todo {
     this.dueDate = new Date(this._data.date);
     this.todoDate = this._todoElement.querySelector(".todo__date");
     if (!isNaN(this.dueDate)) {
-      this.todoDate.textContent = `Due: ${this.dueDate.toLocaleString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      })}`;
+      this.todoDate.textContent = `Due: ${this.dueDate.toLocaleDateString(
+        "en-US",
+        {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }
+      )}`;
     }
+    console.log(this._data.date);
   }
 
   getView() {
@@ -50,6 +64,8 @@ class Todo {
     this._generateCheckboxEl();
 
     this._setEventListeners();
+
+    this._generateDueDate();
 
     return this._todoElement;
   }

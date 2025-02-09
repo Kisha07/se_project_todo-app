@@ -35,9 +35,7 @@ class FormValidator {
 
   _hideInputError(inputElement) {
     console.log(`#${inputElement.id}-error`);
-    const errorElement = this._formEl.querySelector(
-      `#${inputElement.id}-error`
-    );
+    const errorElement = document.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = "";
     errorElement.classList.remove(this._errorClass);
@@ -82,7 +80,6 @@ class FormValidator {
       this.resetvalidation();
     });
     this._setEventListeners();
-    this._toggleButtonState();
   }
 }
 
