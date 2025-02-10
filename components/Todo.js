@@ -5,16 +5,6 @@ class Todo {
   }
 
   _setEventListeners() {
-    const dateInput = this._todoElement.querySelector(".popup_input_type_date");
-
-    if (dateInput) {
-      dateInput.addEventListener("change", (event) => {
-        this._data.date = event.target.value;
-        this._generateDueDate();
-      });
-    } else {
-      console.error("Date input not found");
-    }
     this._todoDeleteBtn.addEventListener("click", () => {
       if (this._todoCheckboxEl.checked) {
         this._completed = !this._completed;
