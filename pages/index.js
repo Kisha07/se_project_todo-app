@@ -36,7 +36,7 @@ const section = new Section({
   items: initialTodos,
   renderer: (item) => {
     const todo = generateTodo(item);
-    section.addItem(todosList);
+    section.addItem(todo);
   },
   containerSelector: ".todos__list",
 });
