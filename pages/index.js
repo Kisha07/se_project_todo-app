@@ -17,9 +17,7 @@ const addTodoPopup = new PopupWithForm({
   handleFormSubmit: () => {},
 });
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-};
+addTodoPopup.setEventListeners();
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
@@ -47,33 +45,19 @@ const section = new Section({
 
 section.renderItems();
 
-addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopupEl);
-});
+function handleEscapeClose(evt) {
+  if (evt.key === "Escape") {
+    this.close();
+  }
+}
 
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopupEl);
+addTodoButton.addEventListener("click", () => {
+  addTodoPopup.open();
 });
 
 initialTodos.forEach((item) => {
-  renderTodo(item);
-});
-
-addTodoForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const name = evt.target.name.value;
-  const dateInput = evt.target.date.value;
-
-  // Create a date object and adjust for timezone
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-  const id = uuidv4();
-
-  const values = { name, date, id };
-
-  renderTodo(values);
-  closeModal(addTodoPopupEl);
+  const todo = generateTodo(item);
+  todosList.append(todo);
 });
 
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
