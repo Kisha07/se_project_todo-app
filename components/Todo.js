@@ -14,13 +14,22 @@ class Todo {
         this._completed = true;
         this._handleCheck(this._completed);
       }
+      this._handleDelete(this._completed);
       this._todoElement.remove();
+      this._updateCounter();
+      this.updateTotal(false);
     });
+
     this._todoCheckboxEl.addEventListener("change", () => {
       this._completed = this._todoCheckboxEl.checked;
       this._handleCheck(this._completed);
       this._data.completed = this._completed;
+      this._updateCounter();
     });
+  }
+  updateTotal(increment) {}
+  addTodo() {
+    this.updateTotal(true);
   }
 
   _generateCheckboxEl() {

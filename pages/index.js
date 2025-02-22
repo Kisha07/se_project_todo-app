@@ -41,6 +41,7 @@ function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
   }
+  todoCounter.updateTotal(false);
 }
 
 // The logic in this function should all be handled in the Todo class.
