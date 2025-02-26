@@ -23,10 +23,13 @@ const addTodoPopup = new PopupWithForm({
     date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
     const id = uuidv4();
 
-    const renderTodo = (item) => {
-      const todo = generateTodo(item);
-      section.addItem(todo);
-    };
+    renderTodo({
+      name,
+      id,
+      date,
+      completed: false,
+    });
+
     section.addItem(todo);
     todoCounter.updateTotal(true);
     newTodoValidator.resetvalidation();
